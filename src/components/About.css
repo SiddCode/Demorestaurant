@@ -182,3 +182,22 @@
     gap: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .about__images {
+    min-height: 280px;
+  }
+
+  .about__img-wrapper--chef {
+    height: 240px;
+  }
+
+  .about__img-wrapper--interior {
+    height: 170px;
+  }
+
+  .about__stats {
+    gap: 1rem;
+  }
+}
+

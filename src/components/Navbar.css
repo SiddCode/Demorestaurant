@@ -232,6 +232,10 @@
   margin-top: 1.5rem;
 }
 
+[data-theme="light"] .navbar-mobile-overlay {
+  background: rgba(253, 248, 240, 0.96);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .navbar-links {
@@ -253,3 +257,4 @@
     letter-spacing: 0.18em;
   }
 }
+
