@@ -1,0 +1,112 @@
+/* ===== Preloader ===== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--bg-primary);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- Logo Text ---------- */
+.preloader-logo {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: 0.45em;
+  color: var(--accent-gold);
+  position: relative;
+  overflow: hidden;
+  animation: preloaderPulse 2s ease-in-out infinite;
+}
+
+/* Gold shimmer sweep */
+.preloader-logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(212, 162, 76, 0.45) 40%,
+    rgba(246, 232, 199, 0.6) 50%,
+    rgba(212, 162, 76, 0.45) 60%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.03); }
+}
+
+/* ---------- Spinner Ring ---------- */
+.preloader-ring {
+  margin-top: 2.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--border);
+  border-top-color: var(--accent-gold);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Loading Bar ---------- */
+.preloader-bar-track {
+  margin-top: 1.6rem;
+  width: min(220px, 60vw);
+  height: 3px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-gold));
+  border-radius: var(--radius-full);
+  animation: barFill 2.2s ease-in-out forwards;
+  box-shadow: 0 0 8px var(--accent-gold-glow-strong);
+}
+
+@keyframes barFill {
+  0%   { width: 0%; }
+  60%  { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* ---------- Tagline ---------- */
+.preloader-tagline {
+  margin-top: 1.2rem;
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+}

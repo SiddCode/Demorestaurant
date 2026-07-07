@@ -1,0 +1,269 @@
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Parallax Background ---------- */
+.hero-bg-image {
+  position: absolute;
+  inset: -10%;            /* oversize so zoom never shows edges */
+  width: 120%;
+  height: 120%;
+  background: url('/images/hero-bg.png') center / cover no-repeat;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* ---------- Gradient Overlay ---------- */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 13, 0.3),
+    rgba(13, 13, 13, 0.7),
+    rgba(13, 13, 13, 0.95)
+  );
+  z-index: 1;
+}
+
+/* ---------- Floating Sparkles ---------- */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-particles::before,
+.hero-particles::after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius-full);
+  background: var(--accent-gold);
+  opacity: 0;
+  animation: sparkle 4s ease-in-out infinite;
+}
+
+.hero-particles::before {
+  width: 4px;
+  height: 4px;
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+  box-shadow:
+    60vw 10vh 0 1px var(--accent-gold),
+    25vw 65vh 0 0.5px var(--accent-gold),
+    80vw 35vh 0 1.5px var(--accent-gold),
+    10vw 80vh 0 0.5px var(--accent-gold),
+    45vw 15vh 0 1px var(--accent-gold),
+    70vw 75vh 0 1px var(--accent-gold),
+    35vw 45vh 0 0.5px var(--accent-gold),
+    90vw 55vh 0 1px var(--accent-gold);
+}
+
+.hero-particles::after {
+  width: 3px;
+  height: 3px;
+  top: 55%;
+  left: 70%;
+  animation-delay: 2s;
+  box-shadow:
+    -20vw 20vh 0 1px var(--accent-amber),
+    -50vw -10vh 0 0.5px var(--accent-amber),
+    15vw -30vh 0 1px var(--accent-amber),
+    -35vw 30vh 0 1.5px var(--accent-amber),
+    20vw 15vh 0 0.5px var(--accent-amber),
+    -60vw -25vh 0 1px var(--accent-amber);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0;   transform: translateY(0) scale(0.5); }
+  50%      { opacity: 0.7; transform: translateY(-20px) scale(1); }
+}
+
+/* Additional sparkle elements via extra divs */
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gold);
+  pointer-events: none;
+  opacity: 0;
+  animation: sparkleFloat 5s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) { top: 12%; left: 30%; animation-delay: 0.5s; }
+.sparkle:nth-child(2) { top: 40%; left: 78%; animation-delay: 1.2s; width: 4px; height: 4px; }
+.sparkle:nth-child(3) { top: 70%; left: 20%; animation-delay: 2.8s; }
+.sparkle:nth-child(4) { top: 25%; left: 60%; animation-delay: 3.5s; width: 2px; height: 2px; }
+.sparkle:nth-child(5) { top: 60%; left: 50%; animation-delay: 1.8s; }
+.sparkle:nth-child(6) { top: 85%; left: 85%; animation-delay: 0.3s; width: 4px; height: 4px; }
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0;   transform: translateY(0) scale(0.3); }
+  30%      { opacity: 0.8; transform: translateY(-15px) scale(1); }
+  70%      { opacity: 0.5; transform: translateY(-30px) scale(0.7); }
+}
+
+/* ---------- Content ---------- */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  will-change: transform;
+  padding: 0 1.5rem;
+  max-width: 800px;
+}
+
+/* Staggered entrance */
+.hero-welcome,
+.hero-title,
+.hero-tagline,
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(35px);
+  animation: heroFadeUp 0.9s ease forwards;
+}
+
+.hero-welcome  { animation-delay: 0.3s; }
+.hero-title    { animation-delay: 0.6s; }
+.hero-tagline  { animation-delay: 0.9s; }
+.hero-buttons  { animation-delay: 1.2s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-welcome {
+  font-family: var(--font-script);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 9vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+}
+
+.hero-title .gold {
+  color: var(--accent-gold);
+  text-shadow: 0 0 40px var(--accent-gold-glow-strong);
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- Buttons ---------- */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  font-size: 0.88rem;
+  padding: 0.75rem 1.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Scroll Indicator ---------- */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  animation: heroFadeUp 0.8s 1.8s ease forwards;
+}
+
+.hero-scroll-text {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-disabled);
+}
+
+.hero-scroll-chevron {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.hero-scroll-chevron svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--accent-gold);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .hero-title {
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (max-height: 500px) {
+  .hero {
+    min-height: 500px;
+  }
+  
+  .hero-scroll-indicator {
+    display: none;
+  }
+}

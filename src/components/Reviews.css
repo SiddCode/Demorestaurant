@@ -1,0 +1,234 @@
+/* ── Reviews Section ── */
+.reviews-section {
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+/* ── Carousel Wrapper ── */
+.reviews-carousel {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+/* ── Viewport ── */
+.reviews-viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+/* ── Track ── */
+.reviews-track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.42, 0, 0.12, 1);
+  will-change: transform;
+}
+
+.reviews-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* ── Card (glassmorphism) ── */
+.review-card {
+  background: linear-gradient(
+    135deg,
+    rgba(36, 27, 23, 0.72) 0%,
+    rgba(36, 27, 23, 0.48) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold) 50%,
+    transparent
+  );
+}
+
+/* ── Quote icon ── */
+.review-quote-icon {
+  display: block;
+  margin: 0 auto 16px;
+}
+
+/* ── Stars ── */
+.review-stars {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* ── Text ── */
+.review-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0 0 28px;
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+/* ── Author ── */
+.review-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.review-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 2px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.review-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: left;
+}
+
+.review-role {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 2px 0 0;
+  text-align: left;
+}
+
+/* ── Arrow Buttons ── */
+.reviews-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.reviews-arrow:hover {
+  border-color: var(--accent-gold);
+  background: var(--accent-gold);
+  color: var(--bg-primary);
+  box-shadow: 0 0 18px var(--accent-gold-glow-strong);
+}
+
+.reviews-arrow--left {
+  left: 0;
+}
+
+.reviews-arrow--right {
+  right: 0;
+}
+
+/* ── Dots ── */
+.reviews-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.reviews-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-hover);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.reviews-dot:hover {
+  border-color: var(--accent-gold);
+}
+
+.reviews-dot--active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  transform: scale(1.25);
+  box-shadow: 0 0 10px var(--accent-gold-glow-strong);
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .reviews-carousel {
+    padding: 0 44px;
+  }
+  .review-card {
+    padding: 32px 22px 28px;
+  }
+  .review-text {
+    font-size: 0.97rem;
+  }
+  .reviews-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .reviews-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-carousel {
+    padding: 0 36px;
+  }
+  .review-card {
+    padding: 28px 16px 24px;
+  }
+}
